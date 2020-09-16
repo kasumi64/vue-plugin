@@ -1,3 +1,5 @@
+const path = require('path');
+
 module.exports = {
 	publicPath: process.env.NODE_ENV === "production" ? "./" : "/",
 	outputDir: "dist",
@@ -6,6 +8,20 @@ module.exports = {
 	filenameHashing: false,
 	productionSourceMap: false,
 	// devtool: 'nosources-source-map',
+	configureWebpack: {
+		resolve: {
+			alias: {
+				// '@': path.join(__dirname, './src'),
+				// '#': path.join(__dirname, '..', '/public'),
+				'@api': path.join(__dirname, './src/api/api.js'),
+				'@libs': path.join(__dirname, './src/libs'),
+				'@package': path.join(__dirname, 'src/libs/package'),
+				'@utils': path.join(__dirname, './src/libs/utils.js'),
+				'@sprite': path.join(__dirname, './src/libs/sprites/MovieClip.js')
+			}
+		},
+		// externals: {} //忽略文件 
+	},
 	devServer: {
 		compress: false,
 		// host: '127.0.0.1',

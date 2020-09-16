@@ -1,5 +1,7 @@
 // 原文链接：https://blog.csdn.net/Allen_Fei_/article/details/82691420
 // console.log(process.env.NODE_ENV);
+const path = require('path');
+
 module.exports = {
 	// 部署应用时的基本 URL(从 Vue CLI 3.3 起已弃用，请使用publicPath。)
 	// baseUrl: process.env.NODE_ENV === 'production' ? '192.168.60.110:8080' : '192.168.60.110:8080',
@@ -13,6 +15,17 @@ module.exports = {
 	indexPath: "index.html",
 	// 默认在生成的静态资源文件名中包含hash以控制缓存
 	filenameHashing: true,
+	configureWebpack: {
+		resolve: {
+			alias: {
+				// '@': path.join(__dirname, './src'),
+				// '#': path.join(__dirname, '..', '/public'),
+				'@libs': path.join(__dirname, './src/libs'),
+				'@package': path.join(__dirname, 'src/libs/package'),
+				'@utils': path.join(__dirname, './src/libs/utils.js')
+			}
+		}
+	},
 	pages: {
 		index: {
 			// page 的入口
