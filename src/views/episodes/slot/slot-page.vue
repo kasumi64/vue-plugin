@@ -7,21 +7,22 @@
 			<template v-slot:default="scope">
 				<div> {{scope.child[0]}} v-slot:default具名插槽，child是slot-scope的数据</div>
 			</template>
-			
+
 			<!-- <div slot-scope="scope">ABC{{scope.child}}</div> -->
-			
-			<template #footer><div >脚部</div></template>
 		</Many>
+		<Radio v-model="value">选择1</Radio>
 	</div>
 </template>
 
 <script>
-import utils from '@/libs/utils.js';
-import sprite from '@/libs/sprites/MovieClip.js';
+import sprite from '@sprite';
+
 
 export default {
+	name: 'v-slot',
 	data(){
 		return {
+			value: true,
 			todo: [{a:11, b:22}, {a:33, b:44}]
 		};
 	},
@@ -30,8 +31,7 @@ export default {
 			let opt = {
 				msg: '<p>连接速度</p>'
 			};
-			utils;
-			sprite.message(opt)
+			sprite.message(opt);
 		}
 	},
 	mounted() {
