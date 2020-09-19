@@ -1,16 +1,19 @@
 <template>
 	<div class="slot" id="slot-page">
-		<button @click="test" class="blueBtn">测 试</button>
-		<Many :todo="todo">
-			<div slot="header">头部</div>
-			
-			<template v-slot:default="scope">
-				<div> {{scope.child[0]}} v-slot:default具名插槽，child是slot-scope的数据</div>
-			</template>
+		<div class="firstRow">
+			<Many :todo="todo">
+				<div slot="header">外部插入的标题</div>
+				
+				<template v-slot:default="scope">
+					<p style="margin-bottom: 10px;">外部插入的默认的内容：</p>
+					<div> {{scope.child[0]}} v-slot:default具名插槽，child是slot-scope的数据</div>
+				</template>
 
-			<!-- <div slot-scope="scope">ABC{{scope.child}}</div> -->
-		</Many>
-		<Radio v-model="value">选择1</Radio>
+				<!-- <div slot-scope="scope">ABC{{scope.child}}</div> -->
+				<div slot="footer">外部插入的footer</div>
+			</Many>
+			<div ref="pageData" class="pageData"></div>
+		</div>
 	</div>
 </template>
 
@@ -35,14 +38,35 @@ export default {
 		}
 	},
 	mounted() {
-		
+		showPageData(this.$refs.pageData);
 	},
 	components: {
 		Many: () => import('./manySlot.vue')
 	}
 }
+
+function showPageData(el){
+	var str = `
+		<p>outer: ${window.outerWidth} x ${window.outerHeight}</p>
+		<p>inner: ${document.documentElement.clientWidth} x ${document.documentElement.clientHeight}</p>
+		<p>屏幕大小: ${screen.width} x ${screen.height}</p>
+		<p>可用屏幕: ${screen.availWidth} x ${screen.availHeight}</p>
+		<p>距离主屏幕的距离: </p><p>${screen.availLeft} x ${screen.availTop}</p>
+	`;
+	var txt = document.createElement('div');
+	txt.innerHTML = str;
+	el.innerHTML = txt.innerHTML;
+}
+		
 </script>
 
 <style scoped lang="scss">
-.slot{padding: 20px;}
+.slot{}
+.firstRow{
+	&>div{display: inline-block;vertical-align: middle;}
+}
+.pageData{
+	margin: 20px;font-size: 40px;
+	::v-deep p{line-height: 1.2;}
+}
 </style>

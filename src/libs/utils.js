@@ -3,7 +3,10 @@ import Vue from 'vue';
 //停止Promise的链式回调
 const STOP_LOGIC = Symbol(); //构造一个Symbol以表达特殊的语义
 const STOPP_PROMISE = Promise.resolve(STOP_LOGIC);
-Promise.stop = () => STOPP_PROMISE;//不是每次返回一个新的Promise，可以节省内存
+Promise.stop = e => {
+	console.warn(e);
+	return STOPP_PROMISE;//不是每次返回一个新的Promise，可以节省内存
+}
 Promise.prototype.next = function(onResolve, onReject) {
 	return this.then(value => value === STOP_LOGIC ? STOP_LOGIC : (onResolve instanceof Function ?  onResolve.call(this, value) : value), onReject);
 };

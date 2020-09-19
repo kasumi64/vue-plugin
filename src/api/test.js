@@ -20,3 +20,7 @@ export const testPost = (obj) => {
 	console.log('testPost', obj);
 	return axios.post(`${module}/post`, obj);
 };
+
+export const getGoods = keyword => {
+	return axios.get(`http://suggest.taobao.com/sug?code=utf-8&q=${keyword}`).catch(e => Promise.stop(e));
+};

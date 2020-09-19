@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="manySlot">
 		<header>
 			<h2>具名插槽header</h2>
 			<slot name="header"></slot>
@@ -19,14 +19,12 @@
 export default {
 	props: {
 		todo: [Object, Array]
-	},
-	created() {
-		console.log('$slots', this);
 	}
 }
 </script>
 
 <style scoped lang="scss">
+.manySlot{max-width: 600px;}
 header, footer, .body{text-align: center;border: 1px dashed #DDD;padding: 20px;}
 h2,h3{margin-bottom: 20px;}
 .body{margin: 20px 0;}

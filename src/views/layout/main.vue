@@ -18,7 +18,7 @@
 			</Content>
 			
 			<HFooter class="text-center">Copyright © 2020.9—{{year}}
-				<a href="http://kasumi64.gitee.io/web/" target="_blank">Lei</a>
+				<a href="http://kasumi64.gitee.io/web/" target="_blank">Kasumi</a>
 				<!-- https://gitee.com/kasumi64/web/pages -->
 			</HFooter>
 		</Layout>
@@ -52,7 +52,7 @@ export default {
 <style scoped lang="scss">
 .layout {height: 100%;}
 .h-layout {background: #F0F2F5;}
-.h-layout-content{padding: 0px 30px;}
-.main{height: calc(100% - 54px);background: rgb(255, 255, 255); padding: 20px;}
+.h-layout-content{padding: 0px 30px;height: 100%;}
+.main{height: calc(100% - 54px);background: rgb(255, 255, 255); padding: 20px;overflow: auto;}
 .h-layout-footer {padding: 20px 50px;color: rgba(0, 0, 0, 0.65);font-size: 14px;}
 </style>

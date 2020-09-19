@@ -31,8 +31,8 @@ const routes = [
 				component: () => import('../views/favorite/bookmark.vue')
 			},
 			{
-				name: 'ellipsis', path: 'ellipsis',
-				component: () => import('../views/episodes/ellipsis.vue')
+				name: 'pattern', path: 'pattern',
+				component: () => import('../views/episodes/pattern.vue')
 			},
 			{
 				name: 'v-slot', path: 'v-slot',
