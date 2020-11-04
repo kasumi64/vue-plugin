@@ -1,6 +1,7 @@
 import '@utils'
 import axios from 'axios'
 
+axios.defaults.withCredentials = true
 
 // create an axios instance
 const http = axios.create({

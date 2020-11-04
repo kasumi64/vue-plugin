@@ -48,7 +48,8 @@ export default {
 function showPageData(el){
 	var str = `
 		<p>outer: ${window.outerWidth} x ${window.outerHeight}</p>
-		<p>inner: ${document.documentElement.clientWidth} x ${document.documentElement.clientHeight}</p>
+		<p>window.inner: ${window.innerWidth} x ${window.innerHeight}</p>
+		<p>html.inner: ${document.documentElement.clientWidth} x ${document.documentElement.clientHeight}</p>
 		<p>屏幕大小: ${screen.width} x ${screen.height}</p>
 		<p>可用屏幕: ${screen.availWidth} x ${screen.availHeight}</p>
 		<p>距离主屏幕的距离: </p><p>${screen.availLeft} x ${screen.availTop}</p>
@@ -66,7 +67,7 @@ function showPageData(el){
 	&>div{display: inline-block;vertical-align: middle;}
 }
 .pageData{
-	margin: 20px;font-size: 40px;
+	margin: 20px;font-size: 0.3rem;
 	::v-deep p{line-height: 1.2;}
 }
 </style>

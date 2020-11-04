@@ -1,28 +1,31 @@
 <template>
 	<div class="search">
-		<input v-model="input" type="text">
-		<button @click="click" class="blueBtn">点击</button>
+		<input v-model="keyword" type="text" @input="input(keyword)">
+		<button @click="search(keyword)" class="blueBtn">点击</button>
 	</div>
 </template>
 
 <script>
 import * as http from '@/api/api.js'
+import utils from '@utils'
 
 export default {
 	name: 'search',
 	data() {
 		return {
-			input: ''
+			keyword: 'op'
 		}
 	},
 	methods: {
-		click() {
-			// console.log(888);
-			// http.testPost().then(res=>{
-			// 	console.log('res',res);
-			// }).catch(e=>{
-			// 	console.log('catch', e);
-			// })
+		search(keyword){
+			http.getGoods().next(res=>{
+				console.log('res',res);
+			})
+		},
+		input(keyword) {
+			http.getBaiduInputTips(keyword).next(res=>{
+				console.log('res',res);
+			});
 		}
 	}
 }

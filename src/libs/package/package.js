@@ -26,5 +26,8 @@ Vue.use(heyui);
 // Vue.use(antd);
 
 import '@libs/style.scss'
+import '@libs/screen.js'
+import '@libs/filters/filter.js'
+import '@libs/directives/'
 
 // import '@libs/svgLoad.js'

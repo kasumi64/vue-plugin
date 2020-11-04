@@ -3,7 +3,7 @@
 		<Sider theme="dark">
 			<Sidebar :collapsed="siderCollapsed"></Sidebar>
 		</Sider>
-		<Layout headerFixed>
+		<Layout class="bg" headerFixed>
 			<HHeader theme="white">
 				<div style="width:100px;float:left;">
 					<Button icon="h-icon-menu" size="l" noBorder style="font-size: 20px" @click="siderCollapsed=!siderCollapsed"></Button>
@@ -50,9 +50,14 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.layout {height: 100%;}
+.layout {}
 .h-layout {background: #F0F2F5;}
-.h-layout-content{padding: 0px 30px;height: 100%;}
-.main{height: calc(100% - 54px);background: rgb(255, 255, 255); padding: 20px;overflow: auto;}
+.h-layout-content{padding: 0px 0.3rem;}
+.main{min-height: calc(100vh - 166px);max-height: calc(100vh - 122px);background: rgb(255, 255, 255); padding: 0.2rem;overflow: auto;}
 .h-layout-footer {padding: 20px 50px;color: rgba(0, 0, 0, 0.65);font-size: 14px;}
+.bg::before{
+	content: '';opacity: 0.1;
+	position: fixed;top: 0;left: 0;width: 100%;height: 100%;z-index: -1;
+	background: url(../../assets/bg.jpg) center/cover no-repeat;
+}
 </style>

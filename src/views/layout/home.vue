@@ -20,6 +20,7 @@ export default {
 				{ title: '查询', key: 'search', icon: 'h-icon-search' },
 				{ title: '收藏', key: 'bookmark', icon: 'h-icon-star' },
 				{ title: '插槽', key: 'v-slot', icon: 'h-icon-task' },
+				{ title: '指令', key: 'v-directive', icon: 'h-icon-task' },
 				{ title: '样式', key: 'pattern', icon: 'h-icon-complete' }
 			]
 		}
@@ -36,8 +37,14 @@ export default {
 .home {}
 .menuList{
 	display: flex;flex-wrap: wrap;
-	li{text-align: center;flex: none;flex-basis: 186px;padding: 10px;}
+	li{text-align: center;flex: none;flex-basis: 186px;padding: 0.1rem;}
+	h3{font-size: 0.16rem;}
 	.item{padding: 10px 0;border-radius: 4px;border: 1px solid #D0E5FF;}
-	.link{margin-top: 20px;}
+	.link{margin-top: 0.2rem;font-size: 0.14rem;}
+}
+@media screen and (max-device-width: 504px){
+	.menuList{
+		li{flex-basis: 50%;}
+	}
 }
 </style>

@@ -1,5 +1,8 @@
 const path = require('path');
 
+function join(directory){return path.join(__dirname, directory);}
+function resolve(directory){return path.resolve(__dirname, directory);}
+
 module.exports = {
 	publicPath: process.env.NODE_ENV === "production" ? "./" : "/",
 	outputDir: "dist",
@@ -8,6 +11,18 @@ module.exports = {
 	filenameHashing: false,
 	productionSourceMap: false,
 	// devtool: 'nosources-source-map',
+	/* pages: {
+		index: {
+			entry: './src/projects/p1/main.js',
+			template: 'public/index.html',
+			filename: 'index.html'
+		},
+		about: {
+			entry: './src/projects/p2/main.js',
+			template: 'public/index.html',
+			filename: 'about.html'
+		}
+	}, */
 	configureWebpack: {
 		resolve: {
 			alias: {
@@ -22,6 +37,18 @@ module.exports = {
 		},
 		// externals: {} //忽略文件 
 	},
+	chainWebpack: config => {
+		/* @scss是你取的静态资源路径别名, 若需要配置多个别名，后续紧跟着设置set即可
+		config.resolve.alias.set('~scss', resolve('src/static/scss')).set('~',resolve('src')) */
+		config.resolve.alias.set('~style', resolve('./src/libs/stle.scss'));
+	},
+	/* css: {
+		loaderOptions: { // 给 sass-loader 传递选项，这里配置的是全局导入
+			sass: {
+				data: `@import "@scss/index.scss";` // @scss 是 src/static/scss 的别名
+			}
+		}
+	}, */
 	devServer: {
 		compress: false,
 		// host: '127.0.0.1',
@@ -51,16 +78,5 @@ module.exports = {
 			}
 		}
 	}
-	/* pages: {
-		index: {
-			entry: './src/projects/p1/main.js',
-			template: 'public/index.html',
-			filename: 'index.html'
-		},
-		about: {
-			entry: './src/projects/p2/main.js',
-			template: 'public/index.html',
-			filename: 'about.html'
-		}
-	}, */
+	
 };

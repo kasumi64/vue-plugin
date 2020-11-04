@@ -38,6 +38,10 @@ const routes = [
 				name: 'v-slot', path: 'v-slot',
 				component: () => import('../views/episodes/slot/slot-page.vue')
 			},
+			{
+				name: 'v-directive', path: 'v-directive',
+				component: () => import('../views/episodes/directive/v-directive.vue')
+			},
 		]
 	},
 	

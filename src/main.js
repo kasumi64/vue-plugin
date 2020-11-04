@@ -7,7 +7,7 @@ import store from './store'
 
 // Vue.config.silent = true
 Vue.config.productionTip = false
-
+Vue.prototype.$state = store.state
 new Vue({
 	router,
 	store,

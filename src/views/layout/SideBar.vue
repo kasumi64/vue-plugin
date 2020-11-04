@@ -27,6 +27,7 @@ export default {
 				{ title: '收藏', key: 'bookmark', icon: 'h-icon-star', count: 1},
 				{ title: '任务', icon: 'h-icon-task', key: 'task', children: [
 					{ title: '插槽', key: 'v-slot' },
+					{ title: '指令', key: 'v-directive' },
 					{ title: '样式', key: 'pattern' }
 				] }
 			],
@@ -55,10 +56,14 @@ export default {
 	methods: {
 		triggerSelect({key}){
 			this.$router.push({name: key});
+			console.log(this.$state)
 		},
 		siderChange({key}){
 			if(key) this.$router.push({name: key});
 		}
+	},
+	computed: {
+		
 	}
 }
 </script>

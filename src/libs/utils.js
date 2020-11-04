@@ -43,7 +43,40 @@ Iface.copyJson = function(obj) {
 	return JSON.parse('{' + json + '}');
 };
 
-Iface.removeDuplicates = (array, property) => {
+function clone(){
+	var target, i, length = arguments.length, item, k, prop, val, copy;
+		
+	if(length == 1){
+		i = 0;
+		target = Object.create(null);
+	} else if(length > 1) {
+		i = 1;
+		target = arguments[0];
+		if(typeof(target) != "object") target = Object.create(null);
+	} else return Object.create(null);
+	
+	for (; i < length; i++) {
+		if( (item = arguments[i]) ){
+			for (k in item) {
+				if( !hasOwn.call(item, k) ) continue;
+				prop = target[k];
+				val = item[k];
+				if(prop === val) continue;
+				if(val && typeof(val)=="object"){
+					if(val instanceof Array){
+						copy = (prop instanceof Array) ? prop : [];
+					} else copy = typeof(prop)=="object" ? prop : {};
+					target[k] = clone(copy, val);
+				} else if(val != null) target[k] = val;
+			}
+		}
+	}
+	return target;
+}
+
+Iface.clone = clone;
+
+Iface.noRepeat = (array, property) => {
 	var i, len = array.length;
 	var unique = [], hashmap = {};
 	for(i = 0; i < len; i++){
@@ -107,4 +140,4 @@ Iface.randomName = function() {
 
 
 
-export default Iface;
+export default Object.freeze(Iface);
