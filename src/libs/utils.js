@@ -133,8 +133,21 @@ Iface.randomName = function() {
 	
 	return sur[this.random(0, 99)] +  name[this.random(0, 100)];
 };
-
-
+// writeTextFile(json, "chrome.json", "text/latex");
+Iface.writeTextFile = function(json, name, type="text/latex") {
+	var blob = new Blob([JSON.stringify(json)], { type });
+	var URL = window.URL || window.webkitURL;
+	var bloburl = URL.createObjectURL(blob);
+	var anchor = document.createElement("a");
+	anchor.style.visibility = "hidden";
+	anchor.href = bloburl;
+	anchor.download = name;
+	document.body.appendChild(anchor);
+	var evt = document.createEvent("MouseEvents");
+	evt.initEvent("click", true, true);
+	anchor.dispatchEvent(evt);
+	document.body.removeChild(anchor);
+}
 
 
 

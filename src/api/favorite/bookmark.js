@@ -1,4 +1,5 @@
 import axios from '../axios.js'
+import { writeTextFile } from '@utils'
 
 
 const folder = process.env.NODE_ENV == 'production' ? require('./booktag.json') : require('./chrome.json');
@@ -50,7 +51,7 @@ if(process.env.NODE_ENV != 'production'){
 			
 			var favorites = parseHtml(bk.querySelector('dl').querySelector('dl'))
 			console.log('readTextFile: ', favorites);
-			writeTextFile(favorites, "text/latex", "chrome.json");
+			writeTextFile(favorites, "chrome.json");
 		}).catch(()=>Promise.stop());
 	}
 
@@ -71,20 +72,43 @@ if(process.env.NODE_ENV != 'production'){
 		return obj;
 	}
 
-	function writeTextFile(json, type, name) {
-		var blob = new Blob([JSON.stringify(json)], { type });
-		var URL = window.URL || window.webkitURL;
-		var bloburl = URL.createObjectURL(blob);
-		var anchor = document.createElement("a");
-		anchor.style.visibility = "hidden";
-		anchor.href = bloburl;
-		anchor.download = name;
-		document.body.appendChild(anchor);
-		var evt = document.createEvent("MouseEvents");
-		evt.initEvent("click", true, true);
-		anchor.dispatchEvent(evt);
-		document.body.removeChild(anchor);
-	}
+	
 
 	// readTextFile();
+	// cityCode();
+}
+
+function cityCode(){
+		
+	// code: '城市代码', city: '城市名称', parentNode: '省节点', postcode: '邮编', abbrev: '简称', pCapital: '省会', 
+	// areaCode: '区号', area :'100万平方千米', licensePlate: '车牌号', describe: '描述'
+	var cityJson, sql = {
+		code: '', city: '', parentNode: '', postcode: '', abbrev: '', pCapital: '', 
+		areaCode: '', area :'', licensePlate: '', describe: ''
+	};
+	cityJson = {};
+	cityJson = require('./citys.json');
+	
+	var arr = ('华北,东北,华东,华中,华南,西南,西北,港澳台地区').split(',');
+	var eara = [
+		['北京市','天津市','河北省','山西省','内蒙古自治区'],
+		['辽宁省','吉林省','黑龙江省'],
+		['上海市','江苏省','浙江省','安徽省','福建省','江西省','山东省'],
+		['河南省','湖北省','湖南省'],
+		['广东省','广西壮族自治区','海南省'],
+		['重庆市','四川省','贵州省','云南省','西藏自治区'],
+		['陕西省','甘肃省','青海省','宁夏回族自治区','新疆维吾尔自治区'],
+		['香港特别行政区','澳门特别行政区','台湾省']
+	];
+	eara.forEach((arr, i) => {
+		var code = '0' + (++i)
+		arr.forEach(str => {
+			let obj = cityJson[str]
+			obj.parentNode = code;
+		})
+	})
+	// console.log(cityJson);
+	
+	// writeTextFile(cityJson, "citys.json");
+
 }
